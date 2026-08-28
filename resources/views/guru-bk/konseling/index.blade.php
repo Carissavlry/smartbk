@@ -43,7 +43,7 @@
 <div class="page-header">
     <div>
         <div class="page-header__title">Konseling Individual</div>
-        <div class="page-header__sub">Daftar kasus konseling siswa binaan</div>
+        <div class="page-header__sub">Daftar Kasus Konseling Siswa Binaan</div>
     </div>
     <a href="{{ route('guru-bk.konseling.create') }}" class="btn-tambah">
         <svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" style="width:16px;height:16px"><path stroke-linecap="round" stroke-linejoin="round" d="M12 4v16m8-8H4"/></svg>
