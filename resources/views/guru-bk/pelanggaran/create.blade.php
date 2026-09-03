@@ -36,7 +36,7 @@
 <div class="page-header">
     <div>
         <div class="page-header__title">Tambah Pelanggaran</div>
-        <div class="page-header__sub">Catat pelanggaran siswa</div>
+        <div class="page-header__sub">Catatan siswa</div>
     </div>
     <a href="{{ route('guru-bk.pelanggaran.index') }}" class="btn-back">
         <svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" style="width:15px;height:15px"><path stroke-linecap="round" stroke-linejoin="round" d="M10 19l-7-7m0 0l7-7m-7 7h18"/></svg>
