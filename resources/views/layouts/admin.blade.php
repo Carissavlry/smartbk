@@ -521,6 +521,18 @@
                 <span class="nav-item__label">Konfigurasi</span>
             </a>
 
+            {{-- Approval Akun --}}
+            <a href="{{ route('admin.approval.index') }}"
+            class="nav-item {{ request()->routeIs('admin.approval.*') ? 'active' : '' }}"
+            data-label="Approval Akun">
+                <span class="nav-item__icon">
+                    <svg fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M9 12.75L11.25 15 15 9.75M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/>
+                    </svg>
+                </span>
+                <span class="nav-item__label">Approval Akun</span>
+            </a>
+
             {{-- Log Aktivitas --}}
             <a href="{{ route('admin.activity-log.index') }}"
                class="nav-item {{ request()->routeIs('admin.activity-log.*') ? 'active' : '' }}"

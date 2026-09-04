@@ -96,10 +96,22 @@ class DashboardController extends Controller
             ->get();
 
         // ===== PENGUMUMAN =====
-        // tabel pengumuman, tidak ada is_aktif — pakai published_at ✅
+        // Filter sama seperti Siswa/PengumumanController: 'semua' ATAU 'kelas_binaan' dari guru BK kelas sendiri
+        $guruBkId = \App\Models\Kelas::find($user->kelas_id)?->guru_id;
+
         $pengumuman = \App\Models\Pengumuman::whereNotNull('published_at')
             ->where('published_at', '<=', now())
-            ->latest('published_at')
+            ->where(function ($q) use ($guruBkId) {
+                $q->where('target', 'semua');
+                if ($guruBkId) {
+                    $q->orWhere(function ($q2) use ($guruBkId) {
+                        $q2->where('target', 'kelas_binaan')
+                        ->where('guru_bk_id', $guruBkId);
+                    });
+                }
+            })
+            ->orderByDesc('is_pinned')
+            ->orderByDesc('published_at')
             ->take(5)
             ->get();
 

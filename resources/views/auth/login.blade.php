@@ -304,6 +304,23 @@
             flex: 0 0 auto;
         }
 
+        .auth-switch {
+            margin-top: 16px;
+            text-align: center;
+            font-size: 0.74rem;
+            color: var(--smartbk-blue-soft);
+        }
+
+        .auth-switch a {
+            color: var(--smartbk-red);
+            font-weight: 700;
+            text-decoration: none;
+        }
+
+        .auth-switch a:hover {
+            text-decoration: underline;
+        }
+
         @media (max-width: 1180px) {
             .login-stage {
                 width: min(900px, 92vw);
@@ -550,6 +567,9 @@
                             </svg>
                             <span>Login dengan Google</span>
                         </a>
+                        <p class="auth-switch">
+                            Belum punya akun? <a href="{{ route('register') }}">Daftar di sini</a>
+                        </p>
                     </div>
                 </div>
             </section>
