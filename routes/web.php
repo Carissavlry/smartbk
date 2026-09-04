@@ -87,6 +87,14 @@ Route::middleware(['auth', 'first.login', 'role:admin_sekolah'])
         Route::get('setting', [SettingController::class, 'index'])->name('setting.index');
         Route::put('setting', [SettingController::class, 'update'])->name('setting.update');
 
+        // Approval Akun Murid/Guru
+        Route::get('approval', [\App\Http\Controllers\Admin\UserApprovalController::class, 'index'])
+            ->name('approval.index');
+        Route::patch('approval/{user}/approve', [\App\Http\Controllers\Admin\UserApprovalController::class, 'approve'])
+            ->name('approval.approve');
+        Route::patch('approval/{user}/reject', [\App\Http\Controllers\Admin\UserApprovalController::class, 'reject'])
+            ->name('approval.reject');
+
         // Log Aktivitas
         Route::get('activity-log', [\App\Http\Controllers\Admin\ActivityLogController::class, 'index'])
             ->name('activity-log.index');

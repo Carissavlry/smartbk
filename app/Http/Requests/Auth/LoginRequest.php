@@ -52,11 +52,24 @@ class LoginRequest extends FormRequest
             }
         }
 
-        if (! Auth::attempt($credentials, $this->boolean('remember'))) {
+                if (! Auth::attempt($credentials, $this->boolean('remember'))) {
             RateLimiter::hit($this->throttleKey());
 
             throw ValidationException::withMessages([
                 'username' => __('Username, NIS, atau NIP tidak ditemukan, atau password salah.'),
+            ]);
+        }
+
+        $user = Auth::user();
+        if ($user->status !== 'approved') {
+            Auth::logout();
+
+            $message = $user->status === 'pending'
+                ? 'Akun kamu masih menunggu persetujuan Admin.'
+                : 'Akun kamu ditolak oleh Admin. Hubungi Admin Sekolah untuk info lebih lanjut.';
+
+            throw ValidationException::withMessages([
+                'username' => $message,
             ]);
         }
 
