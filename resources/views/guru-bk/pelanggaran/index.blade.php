@@ -65,7 +65,7 @@
     </div>
     <div class="filter-bar" style="border-bottom:none;">
         <form method="GET" action="{{ route('guru-bk.pelanggaran.index') }}" style="width:100%;">
-            <div style="display:grid; grid-template-columns:1fr 1fr auto; gap:14px; align-items:flex-end;">
+            <div data-filter-grid-3col style="display:grid; grid-template-columns:1fr 1fr 1fr auto; gap:14px; align-items:flex-end;">
                 <div class="filter-group">
                     <label>Cari Siswa</label>
                     <input type="text" name="siswa" value="{{ request('siswa') }}" placeholder="Nama atau NIS...">

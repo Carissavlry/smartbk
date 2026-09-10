@@ -3,6 +3,10 @@
 @section('page-title', 'Detail Konseling')
 
 @section('content')
+<style>
+  .konseling-layout { display:grid; grid-template-columns:1fr 340px; gap:20px; }
+  @media (max-width: 1024px) { .konseling-layout { grid-template-columns: 1fr; } }
+</style>
 <div style="padding:28px 32px;min-height:100vh;background:#f1f5f9;">
 
     {{-- BACK + HEADER --}}
@@ -19,7 +23,7 @@
         </div>
     </div>
 
-    <div style="display:grid;grid-template-columns:1fr 340px;gap:20px;">
+    <div class="konseling-layout">
 
         {{-- KIRI: Info Utama --}}
         <div style="display:flex;flex-direction:column;gap:20px;">

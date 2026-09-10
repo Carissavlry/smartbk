@@ -20,7 +20,7 @@
         $kategoriBerat  = $pelanggarans->getCollection()->filter(fn($p) => optional($p->jenisPelanggaran)->kategori === 'berat')->count();
     @endphp
 
-    <div style="display:grid;grid-template-columns:repeat(2,1fr);gap:16px;margin-bottom:16px;">
+    <div data-grid-2col style="display:grid;grid-template-columns:repeat(2,1fr);gap:16px;margin-bottom:16px;">
 
         {{-- Total Poin --}}
         <div style="background:white;border-radius:16px;border:1px solid #e2e8f0;box-shadow:0 1px 4px rgba(0,0,0,0.06);padding:18px 20px;">

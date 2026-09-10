@@ -4,6 +4,14 @@
 @section('page-title', 'Dashboard')
 
 @section('content')
+<style>
+  @media (max-width: 1024px) {
+    .stats-grid-4 { grid-template-columns: repeat(2, 1fr) !important; }
+  }
+  @media (max-width: 768px) {
+    .stats-grid-4 { grid-template-columns: 1fr !important; }
+  }
+</style>
 @php
     $poinWarning = $totalPoin >= 75;
     $poinDanger  = $totalPoin >= 100;
@@ -49,7 +57,7 @@
 </div>
 
 {{-- ===== STAT CARDS ===== --}}
-<div style="display:grid;grid-template-columns:repeat(4,1fr);gap:16px;margin-bottom:20px;">
+<div class="stats-grid-4" style="display:grid;grid-template-columns:repeat(4,1fr);gap:16px;margin-bottom:20px;">
 
     {{-- Konseling --}}
     <div style="background:white;border-radius:16px;border:1px solid #f1f5f9;box-shadow:0 1px 4px rgba(0,0,0,0.06);padding:20px;">

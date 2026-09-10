@@ -4,6 +4,20 @@
 @section('page-title', 'Dashboard')
 
 @section('content')
+<style>
+  @media (max-width: 1024px) {
+    .stats-grid-4 { grid-template-columns: repeat(2, 1fr) !important; }
+  }
+  @media (max-width: 768px) {
+    .stats-grid-4 { grid-template-columns: 1fr !important; }
+  }
+  @media (max-width: 1024px) {
+    .stats-grid-3 { grid-template-columns: repeat(2, 1fr) !important; }
+  }
+  @media (max-width: 768px) {
+    .stats-grid-3 { grid-template-columns: 1fr !important; }
+  }
+</style>
 
 <div style="background: linear-gradient(135deg, #021024 0%, #052659 60%, #3A000C 100%); border-radius:20px; padding:28px 32px; margin-bottom:24px; display:flex; align-items:center; justify-content:space-between; flex-wrap:wrap; gap:16px;">
     <div style="display:flex; align-items:center; gap:14px;">
@@ -28,7 +42,7 @@
     </div>
 </div>
 
-<div style="display:grid; grid-template-columns:repeat(4,1fr); gap:16px; margin-bottom:20px;">
+<div class="stats-grid-4" style="display:grid; grid-template-columns:repeat(4,1fr); gap:16px; margin-bottom:20px;">
     <div style="background:white; border-radius:16px; border:1px solid #f1f5f9; box-shadow:0 1px 4px rgba(0,0,0,0.06); padding:20px;">
         <div style="display:flex; align-items:center; justify-content:space-between; margin-bottom:14px;">
             <div style="width:44px; height:44px; border-radius:12px; background:#eff6ff; display:flex; align-items:center; justify-content:center;">
@@ -71,7 +85,7 @@
     </div>
 </div>
 
-<div style="display:grid; grid-template-columns:repeat(3,1fr); gap:16px; margin-bottom:20px;">
+<div class="stats-grid-3" style="display:grid; grid-template-columns:repeat(3,1fr); gap:16px; margin-bottom:20px;">
     <div style="background:#f0fdf4; border:1px solid #bbf7d0; border-radius:16px; padding:16px; display:flex; align-items:center; gap:14px;">
         <div style="width:42px; height:42px; border-radius:12px; background:#dcfce7; display:flex; align-items:center; justify-content:center; flex-shrink:0;">
             <svg style="width:20px;height:20px;" fill="none" stroke="#16a34a" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 16l-4-4m0 0l4-4m-4 4h14"/></svg>

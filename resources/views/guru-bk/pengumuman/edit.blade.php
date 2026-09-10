@@ -39,7 +39,7 @@
             </div>
 
             {{-- Kategori + Target --}}
-            <div style="display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-bottom:20px;">
+            <div class="form-grid-2col">
 
                 {{-- Kategori --}}
                 <div>

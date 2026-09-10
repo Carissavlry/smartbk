@@ -37,7 +37,7 @@
     </div>
     <div style="padding:16px 20px;">
         <form method="GET" action="{{ route('guru-bk.chat.index') }}">
-            <div style="display:grid;grid-template-columns:1fr 1fr auto;gap:14px;align-items:flex-end;">
+            <div data-filter-grid-2col style="display:grid;grid-template-columns:1fr 1fr auto;gap:14px;align-items:flex-end;">
                 <div style="display:flex;flex-direction:column;gap:4px;">
                     <label style="font-size:0.72rem;font-weight:600;color:#64748b;">Cari Siswa</label>
                     <input type="text" name="search" value="{{ $search ?? '' }}"

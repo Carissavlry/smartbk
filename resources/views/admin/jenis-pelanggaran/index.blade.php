@@ -12,6 +12,8 @@
     .btn-primary:hover { background:var(--navy-darkest); color:white; }
     .card { background:white; border-radius:16px; border:1px solid #e8edf5; padding:24px; box-shadow:0 1px 4px rgba(0,0,0,0.05); margin-bottom:20px; }
     .filter-grid { display:grid; grid-template-columns:2fr 1fr 1fr auto; gap:12px; align-items:end; }
+    @media (max-width: 1024px) { .filter-grid { grid-template-columns: 1fr 1fr; } }
+    @media (max-width: 768px) { .filter-grid { grid-template-columns: 1fr; } }
     .form-group { display:flex; flex-direction:column; gap:5px; }
     .form-group label { font-size:0.78rem; font-weight:600; color:#374151; }
     .form-group input, .form-group select { padding:8px 12px; border:1.5px solid #e2e8f0; border-radius:9px; font-size:0.83rem; color:#1e293b; background:white; transition:border 0.2s; }

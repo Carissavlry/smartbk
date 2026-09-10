@@ -1,9 +1,11 @@
-@extends('layouts.siswa')
-
-@section('title', 'Prestasi Saya')
-@section('page-title', 'Prestasi Saya')
-
-@section('content')
+<style>
+@media (max-width: 1024px) {
+  [data-grid-4col] { grid-template-columns: repeat(2, 1fr) !important; }
+}
+@media (max-width: 768px) {
+  [data-grid-4col] { grid-template-columns: 1fr !important; }
+}
+</style>
 <div style="padding:28px 32px;min-height:100vh;background:#f1f5f9;">
 
     {{-- HEADER --}}
@@ -19,7 +21,7 @@
         $juara1         = $prestasis->getCollection()->filter(fn($p) => $p->peringkat === 'Juara 1')->count();
     @endphp
 
-    <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:16px;margin-bottom:24px;">
+    <div data-grid-4col style="display:grid;grid-template-columns:repeat(4,1fr);gap:16px;margin-bottom:24px;">
         {{-- Total Prestasi --}}
         <div style="background:white;border-radius:16px;border:1px solid #e2e8f0;box-shadow:0 1px 4px rgba(0,0,0,0.06);padding:18px 20px;">
             <div style="display:flex;align-items:center;gap:10px;margin-bottom:10px;">

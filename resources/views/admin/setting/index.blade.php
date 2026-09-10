@@ -19,6 +19,10 @@
     .btn-submit{display:inline-flex;align-items:center;gap:6px;padding:10px 28px;background:var(--navy-dark);color:white;border:none;border-radius:10px;font-size:0.85rem;font-weight:600;cursor:pointer;transition:background 0.2s;}
     .btn-submit:hover{background:var(--navy-darkest);}
     .threshold-grid{display:grid;grid-template-columns:1fr 1fr 1fr;gap:16px;}
+    @media (max-width: 1024px) { .threshold-grid { grid-template-columns: 1fr 1fr; } }
+    @media (max-width: 768px) { .threshold-grid { grid-template-columns: 1fr; } }
+    .form-grid{display:grid;grid-template-columns:1fr 1fr;gap:18px;}
+    @media (max-width: 768px) { .form-grid { grid-template-columns: 1fr; } }
     .threshold-card{border-radius:12px;padding:16px;border:2px solid;}
     .threshold-kuning{background:#fefce8;border-color:#fde68a;}
     .threshold-merah{background:#fff7ed;border-color:#fed7aa;}

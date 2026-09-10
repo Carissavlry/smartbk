@@ -16,9 +16,12 @@
     .profile-name { font-size:1.1rem; font-weight:700; color:var(--navy-darkest); }
     .profile-sub { font-size:0.78rem; color:#64748b; margin-top:2px; }
     .info-grid { display:grid; grid-template-columns:1fr 1fr; gap:16px; }
+    @media (max-width: 1024px) { .info-grid { grid-template-columns: 1fr; } }
     .info-item label { font-size:0.7rem; font-weight:700; color:#94a3b8; text-transform:uppercase; letter-spacing:0.06em; display:block; margin-bottom:4px; }
     .info-item .value { font-size:0.88rem; font-weight:500; color:#1e293b; }
     .stat-row { display:grid; grid-template-columns:repeat(3,1fr); gap:12px; margin-bottom:20px; }
+    @media (max-width: 1024px) { .stat-row { grid-template-columns: repeat(2, 1fr); } }
+    @media (max-width: 768px) { .stat-row { grid-template-columns: 1fr; } }
     .stat-box { text-align:center; padding:16px; border-radius:12px; border:1px solid #e8edf5; }
     .stat-box .num { font-size:1.6rem; font-weight:800; }
     .stat-box .lbl { font-size:0.72rem; color:#64748b; margin-top:4px; }

@@ -10,6 +10,9 @@
     .page-header__sub { font-size:0.78rem; color:#64748b; margin-top:2px; }
     .card { background:white; border-radius:16px; border:1px solid #e8edf5; box-shadow:0 1px 4px rgba(0,0,0,0.05); margin-bottom:20px; overflow:hidden; }
     .filter-bar { padding:16px 20px; border-bottom:1px solid #f1f5f9; display:flex; gap:10px; flex-wrap:wrap; align-items:flex-end; }
+    .filter-grid-container { display:grid; grid-template-columns:1fr 1fr auto; gap:14px; align-items:flex-end; }
+    @media (max-width: 1024px) { .filter-grid-container { grid-template-columns: 1fr; } }
+    @media (max-width: 768px) { .filter-grid-container { grid-template-columns: 1fr; } }
     .filter-group { display:flex; flex-direction:column; gap:4px; flex:1; min-width:140px; }
     .filter-group label { font-size:0.72rem; font-weight:600; color:#64748b; }
     .filter-group input, .filter-group select { padding:7px 10px; border:1.5px solid #e2e8f0; border-radius:8px; font-size:0.82rem; color:#1e293b; background:white; width:100%; }
@@ -50,7 +53,7 @@
     </div>
     <div class="filter-bar" style="border-bottom:none;">
         <form method="GET" action="{{ route('guru-bk.siswa-binaan.index') }}" style="width:100%;">
-            <div style="display:grid; grid-template-columns:1fr 1fr auto; gap:14px; align-items:flex-end;">
+            <div class="filter-grid-container">
                 <div class="filter-group">
                     <label>Cari Siswa</label>
                     <input type="text" name="search" value="{{ request('search') }}" placeholder="Nama / NIS...">

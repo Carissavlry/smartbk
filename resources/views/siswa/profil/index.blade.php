@@ -3,6 +3,10 @@
 @section('page-title', 'Profil Saya')
 
 @section('content')
+<style>
+  .profile-layout { display:grid; grid-template-columns:320px 1fr; gap:24px; align-items:start; }
+  @media (max-width: 1024px) { .profile-layout { grid-template-columns: 1fr; } }
+</style>
 <div style="padding:28px 32px;min-height:100vh;background:#f1f5f9;">
 
     <div style="margin-bottom:24px;">
@@ -44,7 +48,7 @@
     </div>
     @endif
 
-    <div style="display:grid;grid-template-columns:320px 1fr;gap:24px;align-items:start;">
+    <div class="profile-layout">
 
         {{-- KOLOM KIRI --}}
         <div style="display:flex;flex-direction:column;gap:20px;">

@@ -10,6 +10,7 @@
     .card{background:white;border-radius:16px;border:1px solid #e8edf5;padding:28px;box-shadow:0 1px 4px rgba(0,0,0,0.05);margin-bottom:20px;}
     .form-section-title{font-size:0.78rem;font-weight:700;text-transform:uppercase;letter-spacing:0.07em;color:var(--navy-dark);padding-bottom:10px;border-bottom:2px solid #e8edf5;margin-bottom:20px;}
     .form-grid{display:grid;grid-template-columns:1fr 1fr;gap:18px;}
+    @media (max-width: 768px) { .form-grid { grid-template-columns: 1fr; } }
     .form-group{display:flex;flex-direction:column;gap:6px;}
     .form-group.full{grid-column:1 / -1;}
     label{font-size:0.8rem;font-weight:600;color:#374151;}

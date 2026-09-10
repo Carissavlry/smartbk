@@ -75,7 +75,7 @@
     </div>
     <div class="card-body">
         <form method="GET" action="{{ route('guru-bk.home-visit.index') }}">
-            <div style="display:grid; grid-template-columns:1fr 1fr 1fr auto; gap:14px; align-items:flex-end;">
+            <div data-filter-grid-3col style="display:grid; grid-template-columns:1fr 1fr 1fr auto; gap:14px; align-items:flex-end;">
 
                 <div style="display:flex; flex-direction:column; gap:5px;">
                     <label style="font-size:0.75rem; font-weight:600; color:#374151;">Cari Siswa</label>
