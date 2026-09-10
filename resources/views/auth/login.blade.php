@@ -229,7 +229,7 @@
 
         .auth-submit {
             width: 100%;
-            margin-top: 12px;
+            margin-top: 4px;
             min-height: 42px;
             border: 0;
             border-radius: 13px;
@@ -250,6 +250,52 @@
             box-shadow: 0 16px 30px rgba(48, 54, 127, 0.26);
             filter: saturate(1.08);
             outline: none;
+        }
+
+        .forgot-password {
+            display: block;
+            text-align: center;
+            margin-top: 15px;
+            color: #007bff;
+            text-decoration: none;
+        }
+
+        .forgot-password a {
+            color: #007bff;
+            text-decoration: none;
+        }
+
+        .forgot-password a:hover {
+            text-decoration: underline;
+        }
+
+        .auth-options {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-top: -8px;
+            margin-bottom: 20px;
+            font-size: 0.74rem;
+        }
+
+        .auth-remember {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            color: var(--smartbk-blue-soft);
+            cursor: pointer;
+            user-select: none;
+        }
+
+        .auth-remember input[type="checkbox"] {
+            width: 15px;
+            height: 15px;
+            accent-color: var(--smartbk-red);
+            cursor: pointer;
+        }
+
+        .auth-options .forgot-password {
+            margin-top: 0;
         }
 
         .auth-divider {
@@ -462,7 +508,6 @@
 <body class="login-page">
     <div class="login-shell">
         <main class="login-stage">
-            <h1 class="sr-only">Masuk ke SmartBK</h1>
 
             <section class="login-panel" aria-labelledby="login-form-title">
                 <div class="login-panel__inner">
@@ -551,6 +596,17 @@
                                 @enderror
                             </div>
 
+                            <div class="auth-options">
+                                <label class="auth-remember">
+                                    <input type="checkbox" name="remember" id="remember" {{ old('remember') ? 'checked' : '' }}>
+                                    <span>Ingat saya</span>
+                                </label>
+
+                                <a href="{{ route('password.request') }}" class="forgot-password">
+                                    Lupa password?
+                                </a>
+                            </div>
+                            
                             <button type="submit" class="auth-submit">
                                 Masuk
                             </button>

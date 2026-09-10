@@ -34,25 +34,25 @@ class LoginRequest extends FormRequest
         if (filter_var($username, FILTER_VALIDATE_EMAIL)) {
             // Login via Email (Admin Sekolah)
             $credentials = [
-                'email'    => $username,
+                'email' => $username,
                 'password' => $this->input('password'),
             ];
         } elseif (is_numeric($username)) {
             // Cek NIS dulu, kalau tidak ada baru coba NIP
             if (\App\Models\User::where('nis', $username)->exists()) {
                 $credentials = [
-                    'nis'      => $username,
+                    'nis' => $username,
                     'password' => $this->input('password'),
                 ];
             } else {
                 $credentials = [
-                    'nip'      => $username,
+                    'nip' => $username,
                     'password' => $this->input('password'),
                 ];
             }
         }
 
-                if (! Auth::attempt($credentials, $this->boolean('remember'))) {
+        if (!Auth::attempt($credentials, $this->boolean('remember'))) {
             RateLimiter::hit($this->throttleKey());
 
             throw ValidationException::withMessages([
@@ -78,7 +78,7 @@ class LoginRequest extends FormRequest
 
     public function ensureIsNotRateLimited(): void
     {
-        if (! RateLimiter::tooManyAttempts($this->throttleKey(), 5)) {
+        if (!RateLimiter::tooManyAttempts($this->throttleKey(), 5)) {
             return;
         }
 
@@ -96,6 +96,6 @@ class LoginRequest extends FormRequest
 
     public function throttleKey(): string
     {
-        return Str::transliterate(Str::lower($this->string('username')).'|'.$this->ip());
+        return Str::transliterate(Str::lower($this->string('username')) . '|' . $this->ip());
     }
 }

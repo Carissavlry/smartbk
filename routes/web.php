@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Auth\AuthenticatedSessionController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\Admin\SettingController;
+use App\Http\Controllers\Auth\ForgotPasswordController;
 
 // Redirect root ke login
 Route::get('/', function () {
@@ -11,7 +12,7 @@ Route::get('/', function () {
 });
 
 // Route Auth (Breeze)
-require __DIR__.'/auth.php';
+require __DIR__ . '/auth.php';
 
 // Route OAuth Google
 Route::get('/auth/google', [App\Http\Controllers\Auth\GoogleAuthController::class, 'redirect'])
@@ -51,13 +52,13 @@ Route::middleware(['auth', 'first.login', 'role:admin_sekolah'])
 
         // Kelas
         Route::resource('kelas', \App\Http\Controllers\Admin\KelasController::class)
-             ->parameters(['kelas' => 'kelas']);
+            ->parameters(['kelas' => 'kelas']);
 
         // Guru BK
         Route::resource('guru-bk', \App\Http\Controllers\Admin\GuruBkController::class)
-             ->parameters(['guru-bk' => 'gurubk']);
+            ->parameters(['guru-bk' => 'gurubk']);
         Route::patch('guru-bk/{gurubk}/reset-password', [\App\Http\Controllers\Admin\GuruBkController::class, 'resetPassword'])
-             ->name('guru-bk.reset-password');
+            ->name('guru-bk.reset-password');
 
         // Siswa — static routes HARUS di atas resource()
         Route::get('siswa/import', [\App\Http\Controllers\Admin\SiswaController::class, 'importForm'])
@@ -76,10 +77,10 @@ Route::middleware(['auth', 'first.login', 'role:admin_sekolah'])
             ->name('siswa.kartu');
         Route::get('siswa/{siswa}/kartu/print', [\App\Http\Controllers\Admin\SiswaController::class, 'kartuPrint'])
             ->name('siswa.kartu.print');
-        
+
         // Jenis Pelanggaran
         Route::resource('jenis-pelanggaran', \App\Http\Controllers\Admin\JenisPelanggaranController::class)
-             ->parameters(['jenis-pelanggaran' => 'jenisPelanggaran']);
+            ->parameters(['jenis-pelanggaran' => 'jenisPelanggaran']);
 
         // Mutasi Siswa
         Route::resource('mutasi-siswa', \App\Http\Controllers\Admin\MutasiSiswaController::class);
@@ -178,11 +179,11 @@ Route::middleware(['auth', 'first.login', 'role:guru_bk'])
         Route::post('/laporan/home-visit', [App\Http\Controllers\GuruBk\LaporanController::class, 'homeVisit'])->name('laporan.home-visit');
         Route::post('/laporan/rekap-umum', [App\Http\Controllers\GuruBk\LaporanController::class, 'rekapUmum'])->name('laporan.rekap-umum');
         // Excel Export
-        Route::post('/laporan/excel/konseling',   [App\Http\Controllers\GuruBk\LaporanController::class, 'excelKonseling'])->name('laporan.excel.konseling');
+        Route::post('/laporan/excel/konseling', [App\Http\Controllers\GuruBk\LaporanController::class, 'excelKonseling'])->name('laporan.excel.konseling');
         Route::post('/laporan/excel/pelanggaran', [App\Http\Controllers\GuruBk\LaporanController::class, 'excelPelanggaran'])->name('laporan.excel.pelanggaran');
-        Route::post('/laporan/excel/prestasi',    [App\Http\Controllers\GuruBk\LaporanController::class, 'excelPrestasi'])->name('laporan.excel.prestasi');
-        Route::post('/laporan/excel/home-visit',  [App\Http\Controllers\GuruBk\LaporanController::class, 'excelHomeVisit'])->name('laporan.excel.home-visit');
-        Route::post('/laporan/excel/rekap-umum',  [App\Http\Controllers\GuruBk\LaporanController::class, 'excelRekapUmum'])->name('laporan.excel.rekap-umum');
+        Route::post('/laporan/excel/prestasi', [App\Http\Controllers\GuruBk\LaporanController::class, 'excelPrestasi'])->name('laporan.excel.prestasi');
+        Route::post('/laporan/excel/home-visit', [App\Http\Controllers\GuruBk\LaporanController::class, 'excelHomeVisit'])->name('laporan.excel.home-visit');
+        Route::post('/laporan/excel/rekap-umum', [App\Http\Controllers\GuruBk\LaporanController::class, 'excelRekapUmum'])->name('laporan.excel.rekap-umum');
     });
 
 // Dashboard Siswa
@@ -237,3 +238,23 @@ Route::middleware(['auth', 'first.login', 'role:siswa'])
 
 
     });
+
+// Halaman form "lupa password"
+Route::get('/forgot-password', [ForgotPasswordController::class, 'create'])
+    ->middleware('guest')
+    ->name('password.request');
+
+// Proses kirim email link reset
+Route::post('/forgot-password', [ForgotPasswordController::class, 'store'])
+    ->middleware('guest')
+    ->name('password.email');
+
+// Halaman form reset password (dari link email)
+Route::get('/reset-password/{token}', [ForgotPasswordController::class, 'edit'])
+    ->middleware('guest')
+    ->name('password.reset');
+
+// Proses simpan password baru
+Route::post('/reset-password', [ForgotPasswordController::class, 'update'])
+    ->middleware('guest')
+    ->name('password.update');

@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\GuruBK;
+namespace App\Http\Controllers\GuruBk;
 
 use App\Http\Controllers\Controller;
 use App\Models\Message;
@@ -14,7 +14,7 @@ class ChatController extends Controller
     public function index(Request $request)
     {
         $guruBk = Auth::user();
-        $search  = $request->get('search');
+        $search = $request->get('search');
         $kelasId = $request->get('kelas_id');
 
         // Ambil kelas binaan untuk dropdown
@@ -28,7 +28,7 @@ class ChatController extends Controller
             ->when($search, function ($q) use ($search) {
                 $q->where(function ($q2) use ($search) {
                     $q2->where('name', 'like', '%' . $search . '%')
-                    ->orWhere('nis', 'like', '%' . $search . '%');
+                        ->orWhere('nis', 'like', '%' . $search . '%');
                 });
             })
             ->when($kelasId, function ($q) use ($kelasId) {
@@ -37,8 +37,8 @@ class ChatController extends Controller
             ->get()
             ->map(function ($siswa) use ($guruBk) {
                 $lastMessage = Message::where(function ($q) use ($guruBk, $siswa) {
-                        $q->where('sender_id', $guruBk->id)->where('receiver_id', $siswa->id);
-                    })
+                    $q->where('sender_id', $guruBk->id)->where('receiver_id', $siswa->id);
+                })
                     ->orWhere(function ($q) use ($guruBk, $siswa) {
                         $q->where('sender_id', $siswa->id)->where('receiver_id', $guruBk->id);
                     })
@@ -65,8 +65,8 @@ class ChatController extends Controller
         $guruBk = Auth::user();
 
         $messages = Message::where(function ($q) use ($guruBk, $siswa) {
-                $q->where('sender_id', $guruBk->id)->where('receiver_id', $siswa->id);
-            })
+            $q->where('sender_id', $guruBk->id)->where('receiver_id', $siswa->id);
+        })
             ->orWhere(function ($q) use ($guruBk, $siswa) {
                 $q->where('sender_id', $siswa->id)->where('receiver_id', $guruBk->id);
             })
@@ -91,18 +91,18 @@ class ChatController extends Controller
         $guruBk = Auth::user();
 
         Message::create([
-            'sender_id'   => $guruBk->id,
+            'sender_id' => $guruBk->id,
             'receiver_id' => $siswa->id,
-            'type'        => 'text',
-            'body'        => $request->body,
+            'type' => 'text',
+            'body' => $request->body,
         ]);
 
         Notification::create([
             'user_id' => $siswa->id,
-            'judul'   => 'Pesan dari Guru BK',
-            'pesan'   => \Str::limit($request->body, 80),
-            'tipe'    => 'chat',
-            'url'     => '/siswa/chat',
+            'judul' => 'Pesan dari Guru BK',
+            'pesan' => \Str::limit($request->body, 80),
+            'tipe' => 'chat',
+            'url' => '/siswa/chat',
         ]);
 
         return redirect()->route('guru-bk.chat.show', $siswa)
