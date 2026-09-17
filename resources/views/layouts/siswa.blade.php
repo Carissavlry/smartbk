@@ -165,10 +165,12 @@
 
     <nav class="sidebar-nav">
 
+        <!-- UTAMA -->
         <div class="nav-section-label">Utama</div>
+
         <a href="{{ route('siswa.dashboard') }}"
-           class="nav-item {{ request()->routeIs('siswa.dashboard') ? 'active' : '' }}"
-           data-label="Dashboard">
+        class="nav-item {{ request()->routeIs('siswa.dashboard') ? 'active' : '' }}"
+        data-label="Dashboard">
             <span class="nav-item__icon">
                 <svg fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24">
                     <path stroke-linecap="round" stroke-linejoin="round" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6"/>
@@ -177,32 +179,37 @@
             <span class="nav-item__label">Dashboard</span>
         </a>
 
-        <div class="nav-section-label">Konseling</div>
+        <!-- LAYANAN KONSELING -->
+        <div class="nav-section-label">Layanan Konseling</div>
+
         <a href="{{ route('siswa.konseling.index') }}"
-           class="nav-item {{ request()->routeIs('siswa.konseling.index') ? 'active' : '' }}"
-           data-label="Riwayat Konseling">
+        class="nav-item {{ request()->routeIs('siswa.konseling.*') ? 'active' : '' }}"
+        data-label="Sesi Konseling Saya">
             <span class="nav-item__icon">
                 <svg fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24">
                     <path stroke-linecap="round" stroke-linejoin="round" d="M20.25 8.511c.884.284 1.5 1.128 1.5 2.097v4.286c0 1.136-.847 2.1-1.98 2.193-.34.027-.68.052-1.02.072v3.091l-3-3c-1.354 0-2.694-.055-4.02-.163a2.115 2.115 0 01-.825-.242m9.345-8.334a2.126 2.126 0 00-.476-.095 48.64 48.64 0 00-8.048 0c-1.131.094-1.976 1.057-1.976 2.192v4.286c0 .837.46 1.58 1.155 1.951m9.345-8.334V6.637c0-1.621-1.152-3.026-2.76-3.235A48.455 48.455 0 0011.25 3c-2.115 0-4.198.137-6.24.402-1.608.209-2.76 1.614-2.76 3.235v6.226c0 1.621 1.152 3.026 2.76 3.235.577.075 1.157.14 1.74.194V21l4.155-4.155"/>
                 </svg>
             </span>
-            <span class="nav-item__label">Konseling</span>
+            <span class="nav-item__label">Jadwal & Konseling</span>
         </a>
 
-        <div class="nav-section-label">Data Saya</div>
+        <!-- REKAM JEJAK & KEDISIPLINAN -->
+        <div class="nav-section-label">Rekam Jejak</div>
+
         <a href="{{ route('siswa.pelanggaran.index') }}"
-           class="nav-item {{ request()->routeIs('siswa.pelanggaran.*') ? 'active' : '' }}"
-           data-label="Poin Pelanggaran">
+        class="nav-item {{ request()->routeIs('siswa.pelanggaran.*') ? 'active' : '' }}"
+        data-label="Catatan Pelanggaran">
             <span class="nav-item__icon">
                 <svg fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24">
                     <path stroke-linecap="round" stroke-linejoin="round" d="M12 9v3.75m-9.303 3.376c-.866 1.5.217 3.374 1.948 3.374h14.71c1.73 0 2.813-1.874 1.948-3.374L13.949 3.378c-.866-1.5-3.032-1.5-3.898 0L2.697 16.126z"/>
                 </svg>
             </span>
-            <span class="nav-item__label">Poin Pelanggaran</span>
+            <span class="nav-item__label">Poin & Pelanggaran</span>
         </a>
+
         <a href="{{ route('siswa.prestasi.index') }}"
-           class="nav-item {{ request()->routeIs('siswa.prestasi.*') ? 'active' : '' }}"
-           data-label="Prestasi Saya">
+        class="nav-item {{ request()->routeIs('siswa.prestasi.*') ? 'active' : '' }}"
+        data-label="Prestasi Saya">
             <span class="nav-item__icon">
                 <svg fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24">
                     <path stroke-linecap="round" stroke-linejoin="round" d="M11.049 2.927c.3-.921 1.603-.921 1.902 0l1.519 4.674a1 1 0 00.95.69h4.915c.969 0 1.371 1.24.588 1.81l-3.976 2.888a1 1 0 00-.363 1.118l1.518 4.674c.3.922-.755 1.688-1.538 1.118l-3.976-2.888a1 1 0 00-1.176 0l-3.976 2.888c-.783.57-1.838-.197-1.538-1.118l1.518-4.674a1 1 0 00-.363-1.118l-3.976-2.888c-.784-.57-.38-1.81.588-1.81h4.914a1 1 0 00.951-.69l1.519-4.674z"/>
@@ -211,20 +218,23 @@
             <span class="nav-item__label">Prestasi Saya</span>
         </a>
 
-        <div class="nav-section-label">Komunikasi</div>
+        <!-- KOMUNIKASI & PENGUMUMAN -->
+        <div class="nav-section-label">Pusat Informasi</div>
+
         <a href="{{ route('siswa.chat.index') }}"
-           class="nav-item {{ request()->routeIs('siswa.chat.*') ? 'active' : '' }}"
-           data-label="Chat Guru BK">
+        class="nav-item {{ request()->routeIs('siswa.chat.*') ? 'active' : '' }}"
+        data-label="Chat Guru BK">
             <span class="nav-item__icon">
                 <svg fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24">
-                    <path stroke-linecap="round" stroke-linejoin="round" d="M8.625 12a.375.375 0 11-.75 0 .375.375 0 01.75 0zm0 0H8.25m4.125 0a.375.375 0 11-.75 0 .375.375 0 01.75 0zm0 0H12m4.125 0a.375.375 0 11-.75 0 .375.375 0 01.75 0zm0 0h-.375M21 12c0 4.556-4.03 8.25-9 8.25a9.764 9.764 0 01-2.555-.337A5.972 5.972 0 015.41 20.97a5.969 5.969 0 01-.474-.065 4.48 4.48 0 00.978-2.025c.09-.457-.133-.901-.467-1.226C3.93 16.178 3 14.189 3 12c0-4.556 4.03-8.25 9-8.25s9 3.694 9 8.25z"/>
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M8.625 12a.375.375 0 11-.75 0 .375.375 0 01.75 0zm0 0H8.25m4.125 0a.375.375 0 11-.75 0 .375.375 0 01.75 0zm0 0h-.375m4.125 0a.375.375 0 11-.75 0 .375.375 0 01.75 0zm0 0h-.375M21 12c0 4.556-4.03 8.25-9 8.25a9.764 9.764 0 01-2.555-.337A5.972 5.972 0 015.41 20.97a.75.75 0 01-1.016-.944l1.106-2.766C4.195 15.803 3 13.992 3 12c0-4.556 4.03-8.25 9-8.25s9 3.694 9 8.25z"/>
                 </svg>
             </span>
-            <span class="nav-item__label">Chat Guru BK</span>
+            <span class="nav-item__label">Konsultasi Chat</span>
         </a>
+
         <a href="{{ route('siswa.pengumuman.index') }}"
-           class="nav-item {{ request()->routeIs('siswa.pengumuman.*') ? 'active' : '' }}"
-           data-label="Pengumuman BK">
+        class="nav-item {{ request()->routeIs('siswa.pengumuman.*') ? 'active' : '' }}"
+        data-label="Pengumuman BK">
             <span class="nav-item__icon">
                 <svg fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24">
                     <path stroke-linecap="round" stroke-linejoin="round" d="M10.34 15.84c-.688-.06-1.386-.09-2.09-.09H7.5a4.5 4.5 0 110-9h.75c.704 0 1.402-.03 2.09-.09m0 9.18c.253.962.584 1.892.985 2.783.247.55.06 1.21-.463 1.511l-.657.38c-.551.318-1.26.117-1.527-.461a20.845 20.845 0 01-1.44-4.282m3.102.069a18.03 18.03 0 01-.59-4.59c0-1.586.205-3.124.59-4.59m0 9.18a23.848 23.848 0 018.835 2.535M10.34 6.66a23.847 23.847 0 008.835-2.535m0 0A23.74 23.74 0 0018.795 3m.38 1.125a23.91 23.91 0 011.014 5.395m-1.014 8.855c-.118.38-.245.754-.38 1.125m.38-1.125a23.91 23.91 0 001.014-5.395m0-3.46c.495.413.811 1.035.811 1.73 0 .695-.316 1.317-.811 1.73m0-3.46a24.347 24.347 0 010 3.46"/>
@@ -233,10 +243,12 @@
             <span class="nav-item__label">Pengumuman BK</span>
         </a>
 
-        <div class="nav-section-label">Akun</div>
+        <!-- AKUN -->
+        <div class="nav-section-label">Pengaturan Akun</div>
+
         <a href="{{ route('siswa.profil.index') }}"
-           class="nav-item {{ request()->routeIs('siswa.profil.*') ? 'active' : '' }}"
-           data-label="Profil Saya">
+        class="nav-item {{ request()->routeIs('siswa.profil.*') ? 'active' : '' }}"
+        data-label="Profil Saya">
             <span class="nav-item__icon">
                 <svg fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24">
                     <path stroke-linecap="round" stroke-linejoin="round" d="M15.75 6a3.75 3.75 0 11-7.5 0 3.75 3.75 0 017.5 0zM4.501 20.118a7.5 7.5 0 0114.998 0A17.933 17.933 0 0112 21.75c-2.676 0-5.216-.584-7.499-1.632z"/>

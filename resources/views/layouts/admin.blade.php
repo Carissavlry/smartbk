@@ -115,6 +115,7 @@
             color: rgba(255,255,255,0.3);
             white-space: nowrap;
             overflow: hidden;
+            transition: opacity 0.2s ease;
         }
 
         .sidebar.collapsed .nav-section-label {
@@ -142,7 +143,7 @@
         }
 
         .nav-item.active {
-            background: rgba(117, 22, 46, 0.25);
+            background: rgba(117, 22, 46, 0.35);
             color: var(--white);
             border-left-color: var(--maroon-mid);
         }
@@ -186,6 +187,7 @@
             white-space: nowrap;
             z-index: 999;
             box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+            pointer-events: none;
         }
 
         /* Sidebar Footer */
@@ -242,21 +244,21 @@
 
         /* ===== TOPBAR ===== */
         .topbar {
-        position: fixed;
-        top: 0;
-        left: var(--sidebar-w);
-        right: 0;
-        height: var(--topbar-h);
-        background: linear-gradient(135deg, var(--navy-darkest) 0%, var(--navy-dark) 60%, var(--maroon-soft) 100%);
-        border-bottom: 1px solid rgba(255,255,255,0.06);
-        display: flex;
-        align-items: center;
-        justify-content: space-between;
-        padding: 0 24px;
-        z-index: 99;
-        transition: left 0.3s ease;
-        box-shadow: 0 2px 8px rgba(2,16,36,0.25);
-    }
+            position: fixed;
+            top: 0;
+            left: var(--sidebar-w);
+            right: 0;
+            height: var(--topbar-h);
+            background: linear-gradient(135deg, var(--navy-darkest) 0%, var(--navy-dark) 60%, var(--maroon-soft) 100%);
+            border-bottom: 1px solid rgba(255,255,255,0.06);
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0 24px;
+            z-index: 90;
+            transition: left 0.3s ease;
+            box-shadow: 0 2px 8px rgba(2,16,36,0.25);
+        }
 
         .topbar.collapsed {
             left: var(--sidebar-w-collapsed);
@@ -283,11 +285,7 @@
         }
 
         .btn-toggle:hover {
-            background: rgba(255,255,255,0.15);
-        }
-
-        .btn-toggle:hover {
-            background: #e2e8f0;
+            background: rgba(255,255,255,0.18);
         }
 
         .btn-toggle svg {
@@ -304,14 +302,13 @@
         .topbar-right {
             display: flex;
             align-items: center;
-            gap: 12px;
+            gap: 16px;
         }
 
         .topbar-user {
             display: flex;
             align-items: center;
             gap: 8px;
-            cursor: pointer;
         }
 
         .topbar-user__avatar {
@@ -423,6 +420,7 @@
         </a>
 
         <!-- Nav -->
+        <!-- Nav -->
         <nav class="sidebar-nav">
 
             <div class="nav-section-label">Utama</div>
@@ -438,7 +436,55 @@
                 <span class="nav-item__label">Dashboard</span>
             </a>
 
-            <div class="nav-section-label">Data Master</div>
+            <!-- KATEGORI: Pengguna & Civitas -->
+            <div class="nav-section-label">Pengguna & Civitas</div>
+
+            <a href="{{ route('admin.siswa.index') }}"
+                class="nav-item {{ request()->routeIs('admin.siswa.*') ? 'active' : '' }}"
+                data-label="Siswa">
+                <span class="nav-item__icon">
+                    <svg fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M12 4.354a4 4 0 110 5.292M15 21H3v-1a6 6 0 0112 0v1zm0 0h6v-1a6 6 0 00-9-5.197M13 7a4 4 0 11-8 0 4 4 0 018 0z"/>
+                    </svg>
+                </span>
+                <span class="nav-item__label">Data Siswa</span>
+            </a>
+
+            <a href="{{ route('admin.guru-bk.index') }}"
+                class="nav-item {{ request()->routeIs('admin.guru-bk.*') ? 'active' : '' }}"
+                data-label="Guru BK">
+                <span class="nav-item__icon">
+                    <svg fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"/>
+                    </svg>
+                </span>
+                <span class="nav-item__label">Data Guru BK</span>
+            </a>
+
+            <a href="{{ route('admin.mutasi-siswa.index') }}"
+               class="nav-item {{ request()->routeIs('admin.mutasi-siswa.*') ? 'active' : '' }}"
+               data-label="Mutasi Siswa">
+                <span class="nav-item__icon">
+                    <svg fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M8 7h12m0 0l-4-4m4 4l-4 4m0 6H4m0 0l4 4m-4-4l4-4"/>
+                    </svg>
+                </span>
+                <span class="nav-item__label">Mutasi Siswa</span>
+            </a>
+
+            <!-- KATEGORI: Akademik & Sekolah -->
+            <div class="nav-section-label">Akademik & Struktur</div>
+
+            <a href="{{ route('admin.kelas.index') }}"
+               class="nav-item {{ request()->routeIs('admin.kelas.*') ? 'active' : '' }}"
+               data-label="Kelas">
+                <span class="nav-item__icon">
+                    <svg fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4"/>
+                    </svg>
+                </span>
+                <span class="nav-item__label">Data Kelas</span>
+            </a>
 
             <a href="{{ route('admin.tahun-ajaran.index') }}"
                 class="nav-item {{ request()->routeIs('admin.tahun-ajaran.*') ? 'active' : '' }}"
@@ -451,55 +497,12 @@
                 <span class="nav-item__label">Tahun Ajaran</span>
             </a>
 
-            <a href="{{ route('admin.kelas.index') }}"
-               class="nav-item {{ request()->routeIs('admin.kelas.*') ? 'active' : '' }}"
-               data-label="Kelas">
-                <span class="nav-item__icon">
-                    <svg fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24">
-                        <path stroke-linecap="round" stroke-linejoin="round" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4"/>
-                    </svg>
-                </span>
-                <span class="nav-item__label">Kelas</span>
-            </a>
+            <!-- KATEGORI: BK & Tata Tertib -->
+            <div class="nav-section-label">Referensi BK</div>
 
-            <a href="{{ route('admin.guru-bk.index') }}"
-                class="nav-item {{ request()->routeIs('admin.guru-bk.*') ? 'active' : '' }}"
-                data-label="Guru BK">
-                <span class="nav-item__icon">
-                    <svg fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24">
-                        <path stroke-linecap="round" stroke-linejoin="round" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"/>
-                    </svg>
-                </span>
-                <span class="nav-item__label">Guru BK</span>
-            </a>
-
-            <a href="{{ route('admin.siswa.index') }}"
-                class="nav-item {{ request()->routeIs('admin.siswa.*') ? 'active' : '' }}"
-                data-label="Siswa">
-                <span class="nav-item__icon">
-                    <svg fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24">
-                        <path stroke-linecap="round" stroke-linejoin="round" d="M12 4.354a4 4 0 110 5.292M15 21H3v-1a6 6 0 0112 0v1zm0 0h6v-1a6 6 0 00-9-5.197M13 7a4 4 0 11-8 0 4 4 0 018 0z"/>
-                    </svg>
-                </span>
-                <span class="nav-item__label">Siswa</span>
-            </a>
-
-            {{-- Mutasi Siswa --}}
-            <a href="{{ route('admin.mutasi-siswa.index') }}"
-            class="nav-item {{ request()->routeIs('admin.mutasi-siswa.*') ? 'active' : '' }}"
-            data-label="Mutasi Siswa">
-                <span class="nav-item__icon">
-                    <svg fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24">
-                        <path stroke-linecap="round" stroke-linejoin="round" d="M8 7h12m0 0l-4-4m4 4l-4 4m0 6H4m0 0l4 4m-4-4l4-4"/>
-                    </svg>
-                </span>
-                <span class="nav-item__label">Mutasi Siswa</span>
-            </a>
-
-            {{-- Jenis Pelanggaran --}}
             <a href="{{ route('admin.jenis-pelanggaran.index') }}"
-            class="nav-item {{ request()->routeIs('admin.jenis-pelanggaran.*') ? 'active' : '' }}"
-            data-label="Jenis Pelanggaran">
+               class="nav-item {{ request()->routeIs('admin.jenis-pelanggaran.*') ? 'active' : '' }}"
+               data-label="Jenis Pelanggaran">
                 <span class="nav-item__icon">
                     <svg fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24">
                         <path stroke-linecap="round" stroke-linejoin="round" d="M12 9v3.75m-9.303 3.376c-.866 1.5.217 3.374 1.948 3.374h14.71c1.73 0 2.813-1.874 1.948-3.374L13.949 3.378c-.866-1.5-3.032-1.5-3.898 0L2.697 16.126z"/>
@@ -508,10 +511,23 @@
                 <span class="nav-item__label">Jenis Pelanggaran</span>
             </a>
 
-            {{-- Konfigurasi Sistem --}}
+            <!-- KATEGORI: Sistem & Pengaturan -->
+            <div class="nav-section-label">Pengaturan Sistem</div>
+
+            <a href="{{ route('admin.approval.index') }}"
+               class="nav-item {{ request()->routeIs('admin.approval.*') ? 'active' : '' }}"
+               data-label="Approval Akun">
+                <span class="nav-item__icon">
+                    <svg fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M9 12.75L11.25 15 15 9.75M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/>
+                    </svg>
+                </span>
+                <span class="nav-item__label">Approval Akun</span>
+            </a>
+
             <a href="{{ route('admin.setting.index') }}"
-            class="nav-item {{ request()->routeIs('admin.setting.*') ? 'active' : '' }}"
-            data-label="Konfigurasi">
+               class="nav-item {{ request()->routeIs('admin.setting.*') ? 'active' : '' }}"
+               data-label="Konfigurasi">
                 <span class="nav-item__icon">
                     <svg fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24">
                         <path stroke-linecap="round" stroke-linejoin="round" d="M9.594 3.94c.09-.542.56-.94 1.11-.94h2.593c.55 0 1.02.398 1.11.94l.213 1.281c.063.374.313.686.645.87.074.04.147.083.22.127.325.196.72.257 1.075.124l1.217-.456a1.125 1.125 0 011.37.49l1.296 2.247a1.125 1.125 0 01-.26 1.431l-1.003.827c-.293.241-.438.613-.43.992a7.723 7.723 0 010 .255c-.008.378.137.75.43.991l1.004.827c.424.35.534.955.26 1.43l-1.298 2.247a1.125 1.125 0 01-1.369.491l-1.217-.456c-.355-.133-.75-.072-1.076.124a6.47 6.47 0 01-.22.128c-.331.183-.581.495-.644.869l-.213 1.281c-.09.543-.56.94-1.11.94h-2.594c-.55 0-1.019-.398-1.11-.94l-.213-1.281c-.062-.374-.312-.686-.644-.87a6.52 6.52 0 01-.22-.127c-.325-.196-.72-.257-1.076-.124l-1.217.456a1.125 1.125 0 01-1.369-.49l-1.297-2.247a1.125 1.125 0 01.26-1.431l1.004-.827c.292-.24.437-.613.43-.991a6.932 6.932 0 010-.255c.007-.38-.138-.751-.43-.992l-1.004-.827a1.125 1.125 0 01-.26-1.43l1.297-2.247a1.125 1.125 0 011.37-.491l1.216.456c.356.133.751.072 1.076-.124.072-.044.146-.086.22-.128.332-.183.582-.495.644-.869l.214-1.28z"/>
@@ -521,19 +537,6 @@
                 <span class="nav-item__label">Konfigurasi</span>
             </a>
 
-            {{-- Approval Akun --}}
-            <a href="{{ route('admin.approval.index') }}"
-            class="nav-item {{ request()->routeIs('admin.approval.*') ? 'active' : '' }}"
-            data-label="Approval Akun">
-                <span class="nav-item__icon">
-                    <svg fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24">
-                        <path stroke-linecap="round" stroke-linejoin="round" d="M9 12.75L11.25 15 15 9.75M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/>
-                    </svg>
-                </span>
-                <span class="nav-item__label">Approval Akun</span>
-            </a>
-
-            {{-- Log Aktivitas --}}
             <a href="{{ route('admin.activity-log.index') }}"
                class="nav-item {{ request()->routeIs('admin.activity-log.*') ? 'active' : '' }}"
                data-label="Log Aktivitas">
@@ -545,10 +548,9 @@
                 <span class="nav-item__label">Log Aktivitas</span>
             </a>
 
-            {{-- Backup & Restore --}}
             <a href="{{ route('admin.backup.index') }}"
-            class="nav-item {{ request()->routeIs('admin.backup.*') ? 'active' : '' }}"
-            data-label="Backup & Restore">
+               class="nav-item {{ request()->routeIs('admin.backup.*') ? 'active' : '' }}"
+               data-label="Backup & Restore">
                 <span class="nav-item__icon">
                     <svg fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24">
                         <path stroke-linecap="round" stroke-linejoin="round" d="M4 7v10c0 2 1 3 3 3h10c2 0 3-1 3-3V7M9 11l3 3 3-3M12 3v11"/>
@@ -563,10 +565,10 @@
         <div class="sidebar-footer">
             <div class="sidebar-user">
                 <div class="sidebar-user__avatar">
-                    {{ strtoupper(substr(auth()->user()->name, 0, 1)) }}
+                    {{ strtoupper(substr(auth()->user()->name ?? 'A', 0, 1)) }}
                 </div>
                 <div class="sidebar-user__info">
-                    <div class="sidebar-user__name">{{ auth()->user()->name }}</div>
+                    <div class="sidebar-user__name">{{ auth()->user()->name ?? 'Admin' }}</div>
                     <div class="sidebar-user__role">Admin Sekolah</div>
                 </div>
             </div>
@@ -577,7 +579,7 @@
     <!-- ===== TOPBAR ===== -->
     <header class="topbar" id="topbar">
         <div class="topbar-left">
-            <button class="btn-toggle" id="sidebarToggle">
+            <button class="btn-toggle" id="sidebarToggle" type="button" aria-label="Toggle Sidebar">
                 <svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
                     <path stroke-linecap="round" stroke-linejoin="round" d="M4 6h16M4 12h16M4 18h16"/>
                 </svg>
@@ -587,9 +589,9 @@
         <div class="topbar-right">
             <div class="topbar-user">
                 <div class="topbar-user__avatar">
-                    {{ strtoupper(substr(auth()->user()->name, 0, 1)) }}
+                    {{ strtoupper(substr(auth()->user()->name ?? 'A', 0, 1)) }}
                 </div>
-                <span class="topbar-user__name">{{ auth()->user()->name }}</span>
+                <span class="topbar-user__name">{{ auth()->user()->name ?? 'Admin' }}</span>
             </div>
             <button type="submit" form="logout-form" class="btn-logout">
                 <svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
@@ -609,27 +611,29 @@
     </main>
 
     <script>
-        const sidebar     = document.getElementById('sidebar');
-        const topbar      = document.getElementById('topbar');
-        const mainContent = document.getElementById('mainContent');
-        const toggle      = document.getElementById('sidebarToggle');
-        const overlay     = document.getElementById('mobileOverlay');
-        const isMobile    = () => window.innerWidth <= 768;
+        document.addEventListener('DOMContentLoaded', () => {
+            const sidebar     = document.getElementById('sidebar');
+            const topbar      = document.getElementById('topbar');
+            const mainContent = document.getElementById('mainContent');
+            const toggle      = document.getElementById('sidebarToggle');
+            const overlay     = document.getElementById('mobileOverlay');
+            const isMobile    = () => window.innerWidth <= 768;
 
-        toggle.addEventListener('click', () => {
-            if (isMobile()) {
-                sidebar.classList.toggle('mobile-open');
-                overlay.classList.toggle('active');
-            } else {
-                sidebar.classList.toggle('collapsed');
-                topbar.classList.toggle('collapsed');
-                mainContent.classList.toggle('collapsed');
-            }
-        });
+            toggle.addEventListener('click', () => {
+                if (isMobile()) {
+                    sidebar.classList.toggle('mobile-open');
+                    overlay.classList.toggle('active');
+                } else {
+                    sidebar.classList.toggle('collapsed');
+                    topbar.classList.toggle('collapsed');
+                    mainContent.classList.toggle('collapsed');
+                }
+            });
 
-        overlay.addEventListener('click', () => {
-            sidebar.classList.remove('mobile-open');
-            overlay.classList.remove('active');
+            overlay.addEventListener('click', () => {
+                sidebar.classList.remove('mobile-open');
+                overlay.classList.remove('active');
+            });
         });
     </script>
 
